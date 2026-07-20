@@ -36,6 +36,11 @@ await test('MockLogger should store logs', () => {
 		'Test message 1',
 		'🚨 First log should be "Test message 1" - check your log storage',
 	)
+	assert.strictEqual(
+		logs[1],
+		'Test message 2',
+		'🚨 Second log should be "Test message 2" - check that log() stores messages in order',
+	)
 })
 
 await test('MockLogger should work with EmailService (dependency injection)', () => {
@@ -45,12 +50,8 @@ await test('MockLogger should work with EmailService (dependency injection)', ()
 
 	const logs = mockLogger.getLogs()
 	assert.ok(
-		logs.length > 0,
-		'🚨 MockLogger should have logs after sendEmail - check that EmailService uses the logger',
-	)
-	assert.ok(
-		logs.some((log) => log.includes('test@example.com')),
-		'🚨 Logs should contain email address - check that EmailService logs the email action',
+		logs.includes('Sending email to test@example.com: Test Subject'),
+		'🚨 After sendEmail("test@example.com", "Test Subject"), getLogs() should include "Sending email to test@example.com: Test Subject"',
 	)
 })
 
@@ -93,7 +94,7 @@ await test('EmailService should work with different logger implementations', () 
 
 	const logs = mockLogger.getLogs()
 	assert.ok(
-		logs.length > 0,
-		'🚨 MockLogger should capture logs from EmailService - demonstrating dependency injection',
+		logs.includes('Sending email to test1@example.com: Test 1'),
+		'🚨 MockLogger should capture "Sending email to test1@example.com: Test 1" from EmailService',
 	)
 })

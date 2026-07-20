@@ -2,28 +2,30 @@
 
 // 🐨 Create a Shape base class with:
 // - Field: color (string)
-// - Constructor that takes color
+// - Constructor(color)
 
 // 🐨 Create a Circle class that extends Shape:
 // - Field: radius (number)
-// - Constructor that takes color and radius
-//   - Call super(color) to initialize parent
+// - Constructor(color, radius) that calls super(color)
+//
+// Example: new Circle('red', 5)
+// → color 'red' (from Shape), radius 5
+// → instanceof Shape === true
 
-// Test Circle
+// Optional smoke test:
 // const circle = new Circle('red', 5)
-// console.log(circle.color) // ✅ Should work - inherited from Shape
-// console.log(circle.radius) // ✅ Should work - defined in Circle
-// console.log(circle)
+// console.log(circle.color, circle.radius)
 
 // 🐨 Create a Rectangle class that extends Shape:
 // - Fields: width (number), height (number)
-// - Constructor that takes color, width, and height
-//   - Call super(color) to initialize parent
+// - Constructor(color, width, height) that calls super(color)
+//
+// Example: new Rectangle('blue', 10, 20)
+// → color 'blue', width 10, height 20
 
-// Test Rectangle
+// Optional smoke test:
 // const rectangle = new Rectangle('blue', 10, 20)
-// console.log(rectangle.color) // ✅ Should work - inherited from Shape
-// console.log(rectangle.width, rectangle.height) // ✅ Should work
-// console.log(rectangle)
+// console.log(rectangle.color, rectangle.width, rectangle.height)
 
+// 🐨 Export all three classes
 // export { Shape, Circle, Rectangle }

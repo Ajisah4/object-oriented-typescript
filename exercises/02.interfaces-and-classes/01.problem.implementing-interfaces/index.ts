@@ -1,26 +1,31 @@
 // Implementing Interfaces
 
 // 🐨 Create a PaymentMethod interface with:
-// - Method: pay(amount: number) returns string
+// - pay(amount: number): string
 
 // 🐨 Create a CreditCard class that implements PaymentMethod:
 // - Field: cardNumber (string)
-// - Constructor that takes cardNumber
-// - Implement pay(amount: number) returns "Paid $${amount} with credit card ${cardNumber}"
+// - Constructor(cardNumber)
+// - pay(amount) returns exactly:
+//   "Paid $${amount} with credit card ${cardNumber}"
+//   Example: new CreditCard('1234-5678-9012-3456').pay(100)
+//   → "Paid $100 with credit card 1234-5678-9012-3456"
 
-// Test CreditCard
+// Optional smoke test:
 // const creditCard = new CreditCard('1234-5678-9012-3456')
 // console.log(creditCard.pay(100))
-// console.log(creditCard)
 
 // 🐨 Create a PayPal class that implements PaymentMethod:
 // - Field: email (string)
-// - Constructor that takes email
-// - Implement pay(amount: number) returns "Paid $${amount} with PayPal ${email}"
+// - Constructor(email)
+// - pay(amount) returns exactly:
+//   "Paid $${amount} with PayPal ${email}"
+//   Example: new PayPal('user@example.com').pay(50)
+//   → "Paid $50 with PayPal user@example.com"
 
-// Test PayPal
+// Optional smoke test:
 // const paypal = new PayPal('user@example.com')
 // console.log(paypal.pay(50))
-// console.log(paypal)
 
+// 🐨 Export the classes (PaymentMethod does not need to be exported)
 // export { CreditCard, PayPal }

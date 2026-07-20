@@ -84,12 +84,12 @@ await test('BankAccount deposit should increase balance', () => {
 	assert.strictEqual(
 		balanceAfterFirstDeposit,
 		100,
-		'🚨 After depositing 100, getBalance() should return 100 - check your deposit method implementation',
+		'🚨 After deposit(100), getBalance() should return 100',
 	)
 	assert.strictEqual(
 		sampleAccount.getBalance(),
 		150,
-		'🚨 After depositing another 50, getBalance() should return 150 - check your deposit method accumulates correctly',
+		'🚨 After deposit(100) then deposit(50), getBalance() should return 150 (deposits accumulate)',
 	)
 })
 

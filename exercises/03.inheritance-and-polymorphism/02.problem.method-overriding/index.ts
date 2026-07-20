@@ -7,7 +7,7 @@ class Shape {
 		this.color = color
 	}
 
-	// 🐨 Add a getArea() method that returns 0
+	// 🐨 Add getArea(): number that returns 0
 }
 
 class Circle extends Shape {
@@ -18,7 +18,8 @@ class Circle extends Shape {
 		this.radius = radius
 	}
 
-	// 🐨 Override getArea() to return Math.PI * radius ** 2
+	// 🐨 Override getArea() so area is π × radius² (use Math.PI)
+	// Example: new Circle('red', 5).getArea() ≈ 78.54
 }
 
 class Rectangle extends Shape {
@@ -31,13 +32,15 @@ class Rectangle extends Shape {
 		this.height = height
 	}
 
-	// 🐨 Override getArea() to return width * height
+	// 🐨 Override getArea() so area is width × height
+	// Example: new Rectangle('blue', 10, 20).getArea() === 200
 }
 
-// Test getArea methods
+// Optional smoke test:
 // const circle = new Circle('red', 5)
 // const rectangle = new Rectangle('blue', 10, 20)
-// console.log(circle.getArea()) // Should print ~78.54
-// console.log(rectangle.getArea()) // Should print 200
+// console.log(circle.getArea()) // ~78.54
+// console.log(rectangle.getArea()) // 200
 
+// 🐨 Keep exporting the classes
 // export { Shape, Circle, Rectangle }

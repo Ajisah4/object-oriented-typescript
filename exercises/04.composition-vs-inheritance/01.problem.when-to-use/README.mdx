@@ -7,11 +7,44 @@ inheritance or composition for different scenarios.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `Logger` class with a `log(message: string)` method
-2. Create an `EmailService` class that uses composition (has-a Logger)
-3. Create a `FileLogger` class that uses inheritance (is-a Logger)
-4. Create a `ConsoleLogger` class that uses inheritance (is-a Logger)
-5. Demonstrate when each approach is appropriate
+### Inheritance (`is-a`)
+
+1. Create a `Logger` base class with `log(message: string): void` that prints
+   exactly `Log: {message}`
+2. Create a `FileLogger` that `extends Logger` and overrides `log` to print
+   exactly `File Log: {message}`
+3. Create a `ConsoleLogger` that `extends Logger` and overrides `log` to print
+   exactly `Console Log: {message}`
+
+### Composition (`has-a`)
+
+4. Create an `EmailService` that **has** a logger (composition), not is a logger:
+   - Accept a `Logger` in the constructor
+   - Keep that logger as private class state (use `#`)
+   - `sendEmail(to: string, subject: string): void` must produce the send-action
+     message `Sending email to ${to}: ${subject}` **through the injected logger
+     and on the console** (both)
+5. Export all four:
+   `export { Logger, FileLogger, ConsoleLogger, EmailService }`
+
+## Fixtures and success criteria
+
+```ts
+const fileLogger = new FileLogger()
+const consoleLogger = new ConsoleLogger()
+const emailService = new EmailService(fileLogger)
+emailService.sendEmail('user@example.com', 'Welcome')
+```
+
+- `fileLogger instanceof Logger` and `consoleLogger instanceof Logger`
+- `fileLogger.log('hi')` prints `File Log: hi`
+- `consoleLogger.log('hi')` prints `Console Log: hi`
+- `new Logger().log('hi')` prints `Log: hi`
+- `EmailService` can be constructed with either logger subclass
+- After `sendEmail('user@example.com', 'Welcome')` with a `FileLogger`, console
+  output includes both:
+  - `File Log: Sending email to user@example.com: Welcome`
+  - `Sending email to user@example.com: Welcome`
 
 💰 Think about the relationship: Is it "is-a" or "has-a"?
 

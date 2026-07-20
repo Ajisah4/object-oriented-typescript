@@ -7,10 +7,33 @@ interfaces to ensure all payment methods follow the same contract.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `PaymentMethod` interface with a `pay(amount: number)` method
-2. Create a `CreditCard` class that implements `PaymentMethod`
-3. Create a `PayPal` class that implements `PaymentMethod`
-4. Each class should have its own implementation of `pay()`
+1. Create a `PaymentMethod` interface with:
+   - `pay(amount: number): string`
+2. Create and export a `CreditCard` class that `implements PaymentMethod`:
+   - Public field: `cardNumber` (`string`)
+   - Constructor `(cardNumber: string)`
+   - `pay(amount)` returns exactly:
+     `Paid $${amount} with credit card ${cardNumber}`
+3. Create and export a `PayPal` class that `implements PaymentMethod`:
+   - Public field: `email` (`string`)
+   - Constructor `(email: string)`
+   - `pay(amount)` returns exactly:
+     `Paid $${amount} with PayPal ${email}`
+4. Export the classes: `export { CreditCard, PayPal }`
+   (`PaymentMethod` itself does not need to be exported)
+
+## Fixtures and success criteria
+
+```ts
+const creditCard = new CreditCard('1234-5678-9012-3456')
+const paypal = new PayPal('user@example.com')
+```
+
+- `creditCard.cardNumber === '1234-5678-9012-3456'`
+- `creditCard.pay(100) === 'Paid $100 with credit card 1234-5678-9012-3456'`
+- `paypal.email === 'user@example.com'`
+- `paypal.pay(50) === 'Paid $50 with PayPal user@example.com'`
+- Both instances expose a callable `pay` method
 
 💰 Classes that implement an interface must define all its methods.
 

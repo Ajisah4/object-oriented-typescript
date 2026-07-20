@@ -1,39 +1,39 @@
 // Private Fields and Defaults
 
-// 🐨 Create a User class with these fields:
+// 🐨 Create a User class with:
 // - name: string
 // - email: string
-// - role: string (default: 'user')
+// - role: string (default: 'user' when omitted)
 // Initialize fields in the constructor
 
-// Test User
+// Optional smoke test:
 // const user = new User('Alice', 'alice@example.com')
 // const admin = new User('Bob', 'bob@example.com', 'admin')
-// console.log(user)
-// console.log(admin)
+// console.log(user.role) // 'user'
+// console.log(admin.role) // 'admin'
 
 // 🐨 Create a BankAccount class with:
 // - accountNumber: string
-// - #balance: number (private field, default: 0)
-// - Method: deposit(amount: number)
-// - Method: getBalance() returns the balance
-// 💰 #balance is a private field - can only be accessed inside the class
-
-// Test BankAccount
+// - a private balance field using # (starts at 0)
+// - deposit(amount: number) increases the balance by amount
+// - getBalance() returns the current balance
+// 💰 Private fields can only be read/written inside the class
+//
+// Example:
 // const account = new BankAccount('12345')
+// account.getBalance() // 0
 // account.deposit(100)
-// console.log(account)
-// console.log(account.getBalance())
+// account.deposit(50)
+// account.getBalance() // 150
 
-// 🐨 Create a Config class with optional default values:
-// - host: string (default: 'localhost')
-// - port: number (default: 3000)
-// - debug: boolean (default: false)
+// 🐨 Create a Config class with constructor defaults:
+// - host: string = 'localhost'
+// - port: number = 3000
+// - debug: boolean = false
+//
+// Example:
+// new Config() → localhost / 3000 / false
+// new Config('example.com', 8080, true) → those custom values
 
-// Test Config
-// const config = new Config()
-// const customConfig = new Config('example.com', 8080, true)
-// console.log(config)
-// console.log(customConfig)
-
+// 🐨 Export all three classes
 // export { User, BankAccount, Config }
