@@ -2,26 +2,29 @@
 
 // 🐨 Create a Product class with:
 // - Fields: name (string), price (number)
-// - Constructor to initialize both
-// - Method: getDescription() returns "Product: {name} - ${price}"
+// - Constructor(name, price) that initializes both
+// - Method: getDescription() returns exactly:
+//   "Product: {name} - ${price}"
+//   Example: new Product('Laptop', 999.99).getDescription()
+//   → "Product: Laptop - $999.99"
 
-// Test Product
+// Optional smoke test:
 // const laptop = new Product('Laptop', 999.99)
 // const mouse = new Product('Mouse', 29.99)
-// console.log(laptop)
-// console.log(mouse)
+// console.log(laptop.getDescription())
+// console.log(mouse.getDescription())
 
 // 🐨 Create a ShoppingCart class with:
-// - Field: items (Array<Product>)
-// - Constructor to initialize empty items array
-// - Method: addItem(product: Product) adds to items
-// - Method: getTotal() returns sum of all product prices
+// - Field: items (Array<Product>), starts empty
+// - Method: addItem(product: Product) appends to items
+// - Method: getTotal() returns the sum of all item prices
+//   Example: laptop (999.99) + mouse (29.99) → 1029.98
 
-// Test ShoppingCart
+// Optional smoke test:
 // const cart = new ShoppingCart()
 // cart.addItem(laptop)
 // cart.addItem(mouse)
-// console.log(cart.getTotal())
-// console.log(cart)
+// console.log(cart.getTotal()) // 1029.98
 
+// 🐨 Export both classes
 // export { Product, ShoppingCart }

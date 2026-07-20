@@ -29,11 +29,17 @@ class PayPal implements PaymentMethod {
 }
 
 // 🐨 Create a processPayment function:
-// - Parameters: method (PaymentMethod), amount (number)
-// - Returns: string
-// - Calls method.pay(amount)
+// - Parameters: method: PaymentMethod, amount: number
+// - Returns: the payment result string for that method and amount
+// - Type the first parameter as PaymentMethod, not a concrete class
+//
+// Expected results (using the classes above):
+// processPayment(new CreditCard('1234-5678-9012-3456'), 100)
+// → "Paid $100 with credit card 1234-5678-9012-3456"
+// processPayment(new PayPal('user@example.com'), 50)
+// → "Paid $50 with PayPal user@example.com"
 
-// Test processPayment
+// Optional smoke test:
 // const creditCard = new CreditCard('1234-5678-9012-3456')
 // const paypal = new PayPal('user@example.com')
 // console.log(processPayment(creditCard, 100))

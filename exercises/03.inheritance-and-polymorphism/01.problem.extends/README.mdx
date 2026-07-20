@@ -7,10 +7,27 @@ it with specific shapes like `Circle` and `Rectangle`.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `Shape` base class with a `color` field
-2. Create a `Circle` class that extends `Shape`
-3. Add a `radius` field to `Circle`
-4. Create a `Rectangle` class that extends `Shape`
-5. Add `width` and `height` fields to `Rectangle`
+1. Create a `Shape` base class with:
+   - Public field: `color` (`string`)
+   - Constructor `(color: string)`
+2. Create a `Circle` class that `extends Shape` with:
+   - Public field: `radius` (`number`)
+   - Constructor `(color, radius)` that initializes the parent via `super(color)`
+3. Create a `Rectangle` class that `extends Shape` with:
+   - Public fields: `width` (`number`), `height` (`number`)
+   - Constructor `(color, width, height)` that calls `super(color)`
+4. Export all three: `export { Shape, Circle, Rectangle }`
+
+## Fixtures and success criteria
+
+```ts
+const circle = new Circle('red', 5)
+const rectangle = new Rectangle('blue', 10, 20)
+```
+
+- `circle.color === 'red'` and `circle.radius === 5`
+- `rectangle.color === 'blue'`, `width === 10`, `height === 20`
+- `circle instanceof Shape` and `rectangle instanceof Shape` are both `true`
+  (each subclass is substitutable as a `Shape`)
 
 📜 [TypeScript Handbook - Inheritance](https://www.typescriptlang.org/docs/handbook/2/classes.html#inheritance)

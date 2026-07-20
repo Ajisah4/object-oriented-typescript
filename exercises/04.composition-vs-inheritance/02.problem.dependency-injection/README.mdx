@@ -6,12 +6,44 @@
 implementations without changing `EmailService`. This is dependency injection—a
 key benefit of composition.
 
+`Logger` and `EmailService` from the previous step are already provided.
+`EmailService.sendEmail(to, subject)` produces
+`Sending email to ${to}: ${subject}` through whatever logger you inject (and
+also on the console).
+
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `MockLogger` class that extends `Logger` and stores logs in memory (useful for testing)
-2. Create a `SilentLogger` class that extends `Logger` and does nothing (useful for production)
-3. Both should extend the `Logger` class from step 01
-4. Demonstrate that `EmailService` works with any logger implementation
+1. Create and export a `MockLogger` that `extends Logger`:
+   - Override `log(message)` to **store** each message in order (do not print)
+   - Expose `getLogs(): Array<string>` that returns the stored messages
+2. Create and export a `SilentLogger` that `extends Logger`:
+   - Override `log(message)` to do nothing (no print, no storage, no throw)
+3. Demonstrate that the existing `EmailService` works with both loggers
+4. Export:
+   `export { Logger, EmailService, MockLogger, SilentLogger }`
+
+## Fixtures and success criteria
+
+```ts
+const mockLogger = new MockLogger()
+mockLogger.log('Test message 1')
+mockLogger.log('Test message 2')
+
+const emailService = new EmailService(mockLogger)
+emailService.sendEmail('test@example.com', 'Test Subject')
+
+const silentLogger = new SilentLogger()
+const silentEmail = new EmailService(silentLogger)
+silentEmail.sendEmail('user@example.com', 'Welcome')
+```
+
+- `mockLogger.getLogs()` starts as `['Test message 1', 'Test message 2']` before
+  `sendEmail`
+- After `sendEmail('test@example.com', 'Test Subject')`, `getLogs()` includes
+  `'Sending email to test@example.com: Test Subject'`
+- `silentLogger instanceof Logger` is `true`
+- Using `SilentLogger` with `EmailService` does not throw
+- The same `EmailService` API works unchanged with either logger
 
 💰 This is the power of dependency injection: `EmailService` doesn't care which
 logger it gets—it just uses whatever logger is provided. This makes testing easy

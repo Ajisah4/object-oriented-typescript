@@ -35,7 +35,7 @@ await test('Product getDescription should return formatted string', () => {
 	assert.strictEqual(
 		sampleLaptop.getDescription(),
 		'Product: Laptop - $999.99',
-		'🚨 getDescription() should return "Product: Laptop - $999.99" - check your method implementation and formatting',
+		'🚨 getDescription() should return "Product: Laptop - $999.99"',
 	)
 })
 
@@ -89,6 +89,6 @@ await test('ShoppingCart getTotal should calculate sum of all item prices', () =
 	assert.strictEqual(
 		sampleCart.getTotal(),
 		1029.98,
-		'🚨 getTotal() should return 1029.98 (sum of 999.99 + 29.99) - check your method implementation and price calculation',
+		'🚨 getTotal() should return 1029.98 for Laptop (999.99) + Mouse (29.99)',
 	)
 })

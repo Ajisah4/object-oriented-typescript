@@ -25,14 +25,19 @@ class VideoFile extends MediaFile {
 }
 
 // 🐨 Create a MediaPlayer class with:
-// - Method: playFile(media: MediaFile) returns string
-//   - Calls media.play() and returns the result
+// - playFile(media: MediaFile): string
+// - Parameter type must be MediaFile (the base class)
+// - Returns that media file's play result string
+//
+// Expected results:
+// playFile(new MediaFile('file.mp3'))  → "Playing file.mp3"
+// playFile(new AudioFile('song.mp3')) → "Playing audio: song.mp3"
+// playFile(new VideoFile('movie.mp4')) → "Playing video: movie.mp4"
 
-// Test MediaPlayer (polymorphism)
-// const audio = new AudioFile('song.mp3')
-// const video = new VideoFile('movie.mp4')
+// Optional smoke test:
 // const player = new MediaPlayer()
-// console.log(player.playFile(audio)) // Should work - AudioFile is substitutable for MediaFile
-// console.log(player.playFile(video)) // Should work - VideoFile is substitutable for MediaFile
+// console.log(player.playFile(new AudioFile('song.mp3')))
+// console.log(player.playFile(new VideoFile('movie.mp4')))
 
+// 🐨 Export MediaFile, AudioFile, VideoFile, and MediaPlayer
 // export { MediaFile, AudioFile, VideoFile, MediaPlayer }

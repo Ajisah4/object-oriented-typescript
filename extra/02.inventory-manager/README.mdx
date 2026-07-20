@@ -30,15 +30,63 @@ npm run dev
 
 ### In `src/app.tsx`
 
-1. Verify the UI updates once class methods are implemented
-2. Check the TODO callouts to confirm you've completed each piece
+1. Replace the placeholder item objects with real class instances
+2. Wire `InventoryManager` + loggers so the Inventory Actions panel shows
+   live data
+
+## Concrete examples (suggested fixtures)
+
+Use these field values (constructor shape is up to you) so the UI has something
+concrete to show:
+
+### Electronics — Laptop
+
+Fields: `name: 'Laptop'`, `basePrice: 1000`, `brand: 'Nova'`, `model: 'X15'`,
+`serialNumber: 'SN-100'`, `location: 'Aisle 3'`, `discountPercent: 10`
+
+Observable results:
+
+- `getDescription()` includes the name, brand, and model
+- `calculatePrice(2)` → `1800` with those price/discount values
+- `getTrackingInfo()` includes serial and location details
+- `updateLocation('Warehouse')` is reflected in later tracking info
+
+### Clothing — Hoodie
+
+Fields: `name: 'Hoodie'`, `basePrice: 40`, `size: 'M'`, `color: 'Navy'`,
+`discountPercent: 0`
+
+- `getDescription()` includes the name, size, and color
+- `calculatePrice(1)` → `40` when discount is `0`
+
+### Perishable — Apples
+
+Fields: `name: 'Apples'`, `basePrice: 3`, `expirationDate: '2026-08-01'`
+
+- `getDescription()` includes the name and expiration date
+
+### Logging + InventoryManager
+
+`Logger.log(message: string): string` returns the same `message` it received
+(no required prefix). `ConsoleLogger` also prints that message.
+`InMemoryLogger` stores that same message for `getLogs()`.
+
+```ts
+const manager = new InventoryManager(new ConsoleLogger())
+manager.receiveStock('Laptop', 5)
+// log output mentions receiving Laptop / 5
+
+const memoryLogger = new InMemoryLogger()
+new InventoryManager(memoryLogger).shipStock('Hoodie', 2)
+memoryLogger.getLogs().length // >= 1
+```
 
 ## Tips
 
 💰 Start with the base `InventoryItem` class. Many other classes depend on it.
 
-💰 When you implement pricing, be consistent about using `basePrice`,
-`quantity`, and `discountPercent`.
+💰 For sellable pricing, combine `basePrice`, order `quantity`, and
+`discountPercent` so the Laptop example above yields `1800` for quantity `2`.
 
 💰 Use the logger classes to see the effects of dependency injection.
 

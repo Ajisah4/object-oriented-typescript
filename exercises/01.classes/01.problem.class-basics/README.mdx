@@ -7,9 +7,37 @@ system.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `Product` class with fields and methods
-2. Create a `ShoppingCart` class that holds products
-3. Instantiate and use these classes
+1. Create and export a `Product` class with:
+   - Public fields: `name` (`string`), `price` (`number`)
+   - A constructor that sets both from parameters `(name, price)`
+   - A `getDescription()` method that returns a string in this exact form:
+     `Product: {name} - ${price}` (include the dollar sign before the price)
+2. Create and export a `ShoppingCart` class with:
+   - A public `items` field typed as `Array<Product>`
+   - New carts start with `items` as an empty array
+   - `addItem(product: Product)` that appends the product to `items`
+   - `getTotal()` that returns the sum of every item's `price`
+3. Export both classes: `export { Product, ShoppingCart }`
+
+## Fixtures and success criteria
+
+With these fixtures:
+
+```ts
+const laptop = new Product('Laptop', 999.99)
+const mouse = new Product('Mouse', 29.99)
+const cart = new ShoppingCart()
+cart.addItem(laptop)
+cart.addItem(mouse)
+```
+
+you should observe:
+
+- `laptop.name === 'Laptop'` and `laptop.price === 999.99`
+- `laptop.getDescription() === 'Product: Laptop - $999.99'`
+- A fresh cart starts with `items.length === 0`
+- After the two `addItem` calls above, `items` has length `2` in insertion order
+- `cart.getTotal() === 1029.98`
 
 💰 A class includes fields, a constructor, and methods.
 

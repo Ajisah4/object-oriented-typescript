@@ -53,11 +53,48 @@ const newCar = new Car('Toyota', 'Camry') // year defaults to 2024
 const oldCar = new Car('Ford', 'Mustang', 1965) // year explicitly set
 ```
 
-🐨 Open <InlineFile file="index.ts" /> and:
+🐨 Open <InlineFile file="index.ts" /> and create/export three classes:
 
-1. Use `#` prefix to create private fields
-2. Use default parameter values in constructors
-3. Create classes that encapsulate their internal state
+### `User`
+
+- Public fields: `name`, `email`, `role` (all `string`)
+- Constructor `(name, email, role = 'user')`
+- Omitting `role` must leave it as `'user'`
+
+### `BankAccount`
+
+- Public field: `accountNumber` (`string`)
+- A private balance field (use `#` so it is inaccessible outside the class)
+- New accounts start with balance `0`
+- `deposit(amount: number)` increases the balance by `amount` (it accumulates)
+- `getBalance()` returns the current balance
+
+### `Config`
+
+- Public fields: `host` (`string`), `port` (`number`), `debug` (`boolean`)
+- Constructor defaults: `host = 'localhost'`, `port = 3000`, `debug = false`
+- `new Config()` must use all three defaults; custom args override them
+
+Export all three: `export { User, BankAccount, Config }`
+
+## Fixtures and success criteria
+
+```ts
+const user = new User('Alice', 'alice@example.com')
+const admin = new User('Bob', 'bob@example.com', 'admin')
+const account = new BankAccount('12345')
+account.deposit(100)
+account.deposit(50)
+const config = new Config()
+const customConfig = new Config('example.com', 8080, true)
+```
+
+- `user.role === 'user'` and `admin.role === 'admin'`
+- `account.accountNumber === '12345'`
+- A fresh account has `getBalance() === 0`
+- After the deposits above, `getBalance() === 150`
+- Default config: `host === 'localhost'`, `port === 3000`, `debug === false`
+- Custom config: `'example.com'`, `8080`, `true`
 
 💰 Use `#` to declare a private field—it's truly private, not just a convention.
 

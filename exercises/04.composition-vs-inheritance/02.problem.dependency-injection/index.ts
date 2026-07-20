@@ -22,31 +22,18 @@ class EmailService {
 }
 
 // 🐨 Create a MockLogger class that extends Logger:
-// - Extends Logger
-// - Override log() to store messages in an array: #logs (private field)
-//   - Stores messages instead of printing them
-// - Method: getLogs() returns Array<string> to retrieve stored messages
-
-// Test MockLogger
-// const mockLogger = new MockLogger()
-// mockLogger.log('Test message')
-// console.log(mockLogger.getLogs()) // Should show ['Test message']
-
-// Test EmailService with MockLogger (dependency injection)
-// const mockLogger = new MockLogger()
-// const emailService = new EmailService(mockLogger)
-// emailService.sendEmail('test@example.com', 'Test Subject')
-// console.log(mockLogger.getLogs()) // Should show the email log
-// console.log(emailService)
+// - Override log(message) to store messages in order (do not print)
+// - getLogs(): Array<string> returns the stored messages
+//
+// Expected:
+// mockLogger.log('Test message 1'); mockLogger.log('Test message 2')
+// → getLogs() is ['Test message 1', 'Test message 2']
+// After EmailService(mockLogger).sendEmail('test@example.com', 'Test Subject')
+// → getLogs() includes 'Sending email to test@example.com: Test Subject'
 
 // 🐨 Create a SilentLogger class that extends Logger:
-// - Extends Logger
-// - Override log() to do nothing (silent logging for production)
+// - Override log(message) to do nothing (no print / no throw)
+// - EmailService + SilentLogger should not throw on sendEmail
 
-// Test SilentLogger
-// const silentLogger = new SilentLogger()
-// const emailService2 = new EmailService(silentLogger)
-// emailService2.sendEmail('user@example.com', 'Welcome')
-// console.log(emailService2)
-
+// 🐨 Export Logger, EmailService, MockLogger, and SilentLogger
 // export { Logger, EmailService, MockLogger, SilentLogger }

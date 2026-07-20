@@ -9,13 +9,14 @@
 // - public fields: name (string), price (number)
 // - a constructor that takes name and price
 // - a method `getDescription()` that returns "{name}: ${price}"
+//   Example: new Product('Mug', 12).getDescription() → "Mug: $12"
 
 // 🐨 Create a class `ShoppingCart` with:
 // - a public field `items` initialized to an empty array of Product
 // - a method `addItem(item: Product)` that adds to items
 // - a method `getTotal()` that returns the total price of all items
 
-// Test Section 1:
+// Optional smoke test:
 // const cart = new ShoppingCart()
 // cart.addItem(new Product('Mug', 12))
 // cart.addItem(new Product('Notebook', 8))
@@ -26,23 +27,21 @@
 // ============================================================================
 
 // 🐨 Create a class `BankAccount` with:
-// - a private field `#balance` (number)
-// - a constructor that takes an initial balance (default 0)
-// - a method `deposit(amount: number)` that adds to balance
-// - a method `withdraw(amount: number)` that subtracts from balance
-// - a method `getBalance()` that returns the balance
+// - a private balance field (use #; default 0)
+// - deposit(amount) / withdraw(amount) / getBalance()
+//   Example: deposit(50), withdraw(10) → getBalance() === 40
 
 // 🐨 Create a class `Config` with:
 // - public fields: host (string), port (number), role (string)
-// - default values: host = 'localhost', port = 3000, role = 'user'
+// - defaults: host = 'localhost', port = 3000, role = 'user'
 
-// Test Section 2:
+// Optional smoke test:
 // const account = new BankAccount()
 // account.deposit(50)
 // account.withdraw(10)
 // console.log(account.getBalance()) // 40
 // const config = new Config()
-// console.log(config.host, config.port, config.role)
+// console.log(config.host, config.port, config.role) // localhost 3000 user
 
 // ============================================================================
 // SECTION 3: Interfaces & Implementations
@@ -54,12 +53,15 @@
 // 🐨 Create a class `CreditCard` that implements PaymentMethod
 // - public field: cardNumber (string)
 // - pay returns "Paid $${amount} with card ${cardNumber}"
+//   Example: new CreditCard('1234').pay(25) → "Paid $25 with card 1234"
 
 // 🐨 Create a class `PayPal` that implements PaymentMethod
 // - public field: email (string)
 // - pay returns "Paid $${amount} with PayPal ${email}"
+//   Example: new PayPal('user@example.com').pay(25)
+//   → "Paid $25 with PayPal user@example.com"
 
-// Test Section 3:
+// Optional smoke test:
 // const card = new CreditCard('1234')
 // const paypal = new PayPal('user@example.com')
 // console.log(card.pay(25))
@@ -71,7 +73,7 @@
 
 // 🐨 Create a function `processPayment` that:
 // - takes a PaymentMethod and an amount
-// - returns the result of calling pay on the method
+// - returns that method's payment result for the amount
 
 // 🐨 Create a class `GiftCard` that implements PaymentMethod
 // - public field: code (string)
@@ -112,13 +114,15 @@
 
 // 🐨 Create a class `Circle` that extends Shape
 // - field: radius (number)
-// - override getArea to return Math.PI * radius * radius
+// - override getArea for a circle (π × radius²; use Math.PI)
+//   Example: new Circle(2).getArea() ≈ 12.57
 
 // 🐨 Create a class `Rectangle` that extends Shape
 // - fields: width (number), height (number)
-// - override getArea to return width * height
+// - override getArea for a rectangle
+//   Example: new Rectangle(3, 4).getArea() === 12
 
-// Test Section 6:
+// Optional smoke test:
 // console.log(new Circle(2).getArea())
 // console.log(new Rectangle(3, 4).getArea())
 
@@ -132,14 +136,17 @@
 
 // 🐨 Create a class `AudioFile` that extends MediaFile
 // - override play to return "Playing audio {filename}"
+//   Example: "Playing audio song.mp3"
 
 // 🐨 Create a class `VideoFile` that extends MediaFile
 // - override play to return "Playing video {filename}"
+//   Example: "Playing video movie.mp4"
 
 // 🐨 Create a class `MediaPlayer` with:
-// - a method `playFile(file: MediaFile)` that returns file.play()
+// - playFile(file: MediaFile) returns that file's play result string
+//   (parameter type must be the base MediaFile)
 
-// Test Section 7:
+// Optional smoke test:
 // const player = new MediaPlayer()
 // console.log(player.playFile(new AudioFile('song.mp3')))
 // console.log(player.playFile(new VideoFile('movie.mp4')))
@@ -149,20 +156,26 @@
 // ============================================================================
 
 // 🐨 Create a class `Logger` with:
-// - a method `log(message: string)` that returns `Log: {message}`
+// - log(message: string) returns the prefixed string `Log: {message}`
 
 // 🐨 Create a class `ConsoleLogger` that extends Logger
-// - override log to call console.log and return the same string
+// - override log to print and return that same prefixed string
 
 // 🐨 Create a class `InMemoryLogger` that extends Logger
-// - a private field `#logs` (array of strings)
-// - override log to store messages in #logs
-// - a method `getLogs()` that returns a copy of #logs
+// - store the raw message argument privately (not the prefixed return value)
+// - still return the prefixed `Log: {message}` string from log()
+// - getLogs() returns a copy of the stored raw messages
 
 // 🐨 Create a class `ReportService` that takes a Logger in its constructor
-// - method `generateReport(title: string)` that logs "Report: {title}"
+// - generateReport(title) logs "Report: {title}" through the injected logger
+//
+// Example:
+// const logger = new InMemoryLogger()
+// new ReportService(logger).generateReport('Weekly Summary')
+// logger.getLogs() includes "Report: Weekly Summary"
+// (the argument passed to log — not "Log: Report: Weekly Summary")
 
-// Test Section 8:
+// Optional smoke test:
 // const logger = new InMemoryLogger()
 // const service = new ReportService(logger)
 // service.generateReport('Weekly Summary')

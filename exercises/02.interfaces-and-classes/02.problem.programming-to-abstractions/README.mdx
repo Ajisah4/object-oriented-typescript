@@ -6,11 +6,30 @@
 This is called "programming to abstractions"—using interfaces instead of
 concrete classes.
 
+The `PaymentMethod` interface plus `CreditCard` and `PayPal` are already
+defined in <InlineFile file="index.ts" />. You only need to add
+`processPayment`.
+
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `processPayment` function that accepts a `PaymentMethod` parameter
-2. The function should call `method.pay(amount)` and return the result
-3. Test it with both `CreditCard` and `PayPal` instances
+1. Create a `processPayment` function with this contract:
+   - Parameters: `method: PaymentMethod`, `amount: number`
+   - Return type: `string`
+   - Behavior: return the payment result string for that method and amount
+2. Type the first parameter as `PaymentMethod` (not `CreditCard` or `PayPal`)
+3. Export it with the existing classes:
+   `export { CreditCard, PayPal, processPayment }`
+
+## Fixtures and success criteria
+
+```ts
+const creditCard = new CreditCard('1234-5678-9012-3456')
+const paypal = new PayPal('user@example.com')
+```
+
+- `processPayment(creditCard, 100) === 'Paid $100 with credit card 1234-5678-9012-3456'`
+- `processPayment(paypal, 50) === 'Paid $50 with PayPal user@example.com'`
+- The same function works for both implementations without special-casing
 
 💰 Use the interface type (`PaymentMethod`) for the parameter instead of a
 concrete class type. This way, the function works with any class that

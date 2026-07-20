@@ -36,7 +36,7 @@ await test('MediaPlayer should accept MediaFile instances', () => {
 	assert.strictEqual(
 		basePlayer.playFile(base),
 		'Playing file.mp3',
-		'🚨 playFile() should return "Playing file.mp3" - check your MediaPlayer.playFile method accepts MediaFile type',
+		'🚨 playFile(new MediaFile("file.mp3")) should return "Playing file.mp3"',
 	)
 })
 
@@ -46,7 +46,7 @@ await test('MediaPlayer should accept AudioFile instances (polymorphism)', () =>
 	assert.strictEqual(
 		basePlayer.playFile(audio),
 		'Playing audio: song.mp3',
-		'🚨 playFile() should return "Playing audio: song.mp3" - check that AudioFile extends MediaFile and playFile accepts the base type',
+		'🚨 playFile(new AudioFile("song.mp3")) should return "Playing audio: song.mp3" (AudioFile must be accepted as MediaFile)',
 	)
 })
 
@@ -56,7 +56,7 @@ await test('MediaPlayer should accept VideoFile instances (polymorphism)', () =>
 	assert.strictEqual(
 		basePlayer.playFile(video),
 		'Playing video: movie.mp4',
-		'🚨 playFile() should return "Playing video: movie.mp4" - check that VideoFile extends MediaFile and playFile accepts the base type',
+		'🚨 playFile(new VideoFile("movie.mp4")) should return "Playing video: movie.mp4" (VideoFile must be accepted as MediaFile)',
 	)
 })
 

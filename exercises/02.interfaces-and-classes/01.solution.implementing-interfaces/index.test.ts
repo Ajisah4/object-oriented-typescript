@@ -26,7 +26,7 @@ await test('CreditCard should implement PaymentMethod interface', () => {
 	assert.strictEqual(
 		creditCard.pay(100),
 		'Paid $100 with credit card 1234-5678-9012-3456',
-		'🚨 pay() should return "Paid $100 with credit card 1234-5678-9012-3456" - check your PaymentMethod interface implementation',
+		'🚨 CreditCard.pay(100) should return "Paid $100 with credit card 1234-5678-9012-3456"',
 	)
 })
 
@@ -40,7 +40,7 @@ await test('PayPal should implement PaymentMethod interface', () => {
 	assert.strictEqual(
 		paypal.pay(50),
 		'Paid $50 with PayPal user@example.com',
-		'🚨 pay() should return "Paid $50 with PayPal user@example.com" - check your PaymentMethod interface implementation',
+		'🚨 PayPal.pay(50) should return "Paid $50 with PayPal user@example.com"',
 	)
 })
 

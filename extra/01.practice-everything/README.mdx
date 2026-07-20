@@ -1,3 +1,58 @@
 # Practice Everything
 
-🐨 Open <InlineFile file="index.ts" /> and work through each section.
+🐨 Open <InlineFile file="index.ts" /> and work through each section. There are
+no automated tests here—use the examples below as your success criteria.
+
+## Section 1: Class Basics
+
+- `Product.getDescription()` returns `{name}: ${price}`
+  (example: `Mug: $12`)
+- `ShoppingCart` starts empty; `addItem` appends; `getTotal` sums prices
+- Example: Mug `12` + Notebook `8` → total `20`
+
+## Section 2: Private Fields & Defaults
+
+- `BankAccount` starts at balance `0` when constructed with no args
+- `deposit` / `withdraw` change balance; `getBalance` returns it
+- Example: deposit `50`, withdraw `10` → balance `40`
+- `Config` defaults: `host = 'localhost'`, `port = 3000`, `role = 'user'`
+
+## Section 3: Interfaces
+
+- `CreditCard.pay(25)` → `Paid $25 with card 1234` (for card `'1234'`)
+- `PayPal.pay(25)` → `Paid $25 with PayPal user@example.com`
+
+## Section 4: Programming to Abstractions
+
+- `processPayment(method, amount)` returns that method's payment result for the
+  amount
+- `GiftCard` with code `'GC-001'`: `pay(40)` →
+  `Paid $40 with gift card GC-001`
+
+## Section 5: Inheritance
+
+- `Package.getLabel()` → `{label} ({weight}kg)`
+- Example: `new Box('Box A', 5, 10).getLabel()` → `Box A (5kg)`
+- Example: `new Crate('Crate B', 20, 'wood').getLabel()` → `Crate B (20kg)`
+
+## Section 6: Method Overriding
+
+- `Shape.getArea()` → `0`
+- `new Circle(2).getArea()` is about `12.57` (π × radius²)
+- `new Rectangle(3, 4).getArea()` → `12`
+
+## Section 7: Substitutability
+
+- `MediaPlayer.playFile` accepts `MediaFile` and returns that file's play result
+- Audio example: `Playing audio song.mp3`
+- Video example: `Playing video movie.mp4`
+
+## Section 8: Composition & Dependency Injection
+
+- `Logger.log(message)` **returns** the prefixed string `Log: {message}`
+- `InMemoryLogger` **stores the raw `message` argument** (not the prefixed
+  return value); `getLogs()` returns a copy of those stored messages
+- `ReportService.generateReport('Weekly Summary')` calls the injected logger
+  with `Report: Weekly Summary`
+- After that call with an `InMemoryLogger`, `getLogs()` includes
+  `Report: Weekly Summary` (the argument that was logged)

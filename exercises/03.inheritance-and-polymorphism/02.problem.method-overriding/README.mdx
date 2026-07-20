@@ -10,8 +10,24 @@ already defined. You'll add and override the `getArea()` method.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Add a `getArea()` method to `Shape` that returns 0
-2. Override `getArea()` in `Circle` to return π × radius²
-3. Override `getArea()` in `Rectangle` to return width × height
+1. Add `getArea(): number` on `Shape` that returns `0`
+2. Override `getArea()` on `Circle` so a circle's area is π × radius²
+   (use `Math.PI`)
+3. Override `getArea()` on `Rectangle` so a rectangle's area is width × height
+4. Keep exporting: `export { Shape, Circle, Rectangle }`
+
+## Fixtures and success criteria
+
+```ts
+const shape = new Shape('red')
+const circle = new Circle('red', 5)
+const rectangle = new Rectangle('blue', 10, 20)
+```
+
+- `shape.getArea() === 0`
+- `circle.getArea()` is about `78.54` (within `0.01` of `Math.PI * 25`)
+- `rectangle.getArea() === 200`
+- Circle and rectangle areas are both greater than `0` and not equal to each
+  other
 
 📜 [TypeScript Handbook - Overriding Methods](https://www.typescriptlang.org/docs/handbook/2/classes.html#overriding-methods)

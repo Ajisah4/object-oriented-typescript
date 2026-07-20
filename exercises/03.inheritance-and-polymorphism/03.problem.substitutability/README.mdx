@@ -5,15 +5,36 @@
 👨‍💼 Let's build a media player that can play different types of media files.
 We'll use polymorphism to handle all media types uniformly.
 
-The `MediaFile`, `AudioFile`, and `VideoFile` classes are already defined.
-You'll create a `MediaPlayer` that works with any of them.
+The `MediaFile`, `AudioFile`, and `VideoFile` classes are already defined with
+these `play()` results:
+
+- `new MediaFile('file.mp3').play()` → `'Playing file.mp3'`
+- `new AudioFile('song.mp3').play()` → `'Playing audio: song.mp3'`
+- `new VideoFile('movie.mp4').play()` → `'Playing video: movie.mp4'`
+
+You'll create a `MediaPlayer` that works with any of them through the base type.
 
 🐨 Open <InlineFile file="index.ts" /> and:
 
-1. Create a `MediaPlayer` class with a `playFile()` method
-2. The method should accept a `MediaFile` parameter
-3. Call `media.play()` and return the result
-4. Test it with both `AudioFile` and `VideoFile` instances
+1. Create a `MediaPlayer` class with `playFile(media: MediaFile): string`
+2. `playFile` must accept the **base** `MediaFile` type (not only subclasses)
+3. Return that media file's play result string
+4. Export everything:
+   `export { MediaFile, AudioFile, VideoFile, MediaPlayer }`
+
+## Fixtures and success criteria
+
+```ts
+const player = new MediaPlayer()
+```
+
+- `player.playFile(new MediaFile('file.mp3')) === 'Playing file.mp3'`
+- `player.playFile(new AudioFile('song.mp3')) === 'Playing audio: song.mp3'`
+- `player.playFile(new VideoFile('movie.mp4')) === 'Playing video: movie.mp4'`
+
+Because the parameter is typed as `MediaFile`, `AudioFile` and `VideoFile`
+instances are valid arguments (substitutability). You should not need separate
+overloads or type checks for each subclass.
 
 💰 The key insight: `playFile()` accepts `MediaFile`, but it works with any
 subclass (`AudioFile`, `VideoFile`) because of substitutability—subclasses
